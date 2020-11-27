@@ -10,8 +10,8 @@ class App extends Component {
     // errorMsg is either null (none) or there is some error
     this.state = {
       apiData: [],
-      apiDataBeginner: [],
-      apiDataIntermediate: [],
+      apiDataBeginner: [], //declaring state for Beginner section of array
+      apiDataIntermediate: [], //declaring state for Intermediate section of array
       isFetched: false,
       errorMsg: null
     };
@@ -22,7 +22,7 @@ class App extends Component {
   async componentDidMount() {
     try {
       const API_URL =
-        "https://raw.githubusercontent.com/JHoulihan/MobileAppArray/main/yoga.json"; //Needs to be updated
+        "https://raw.githubusercontent.com/jphoulihan/yoga-app/main/yoga.json"; //Needs to be updated
       // Fetch or access the service at the API_URL address
       const response = await fetch(API_URL);
       // wait for the response. When it arrives, store the JSON version
@@ -76,13 +76,17 @@ class App extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.apiDataBeginner.map((person) => (
-                  <tr>
+                {this.state.apiDataBeginner.map((person, index) => (
+                  <tr key={index}>
                     <td>{person.body_part}</td>
                     <td>{person.Position}</td>
-                    <td>{person.imgURL}</td>
+                    <td>
+                      <img alt="dog" src={person.imgURL} />
+                    </td>
                     <td>{person.Description}</td>
-                    <td>{person.Audio}</td>
+                    <td><audio controls >
+                    <source src={person.Audio}/>
+                    </audio></td>
                   </tr>
                 ))}
               </tbody>
