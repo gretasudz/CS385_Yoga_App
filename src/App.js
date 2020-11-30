@@ -8,17 +8,31 @@ class App extends Component {
     // apiData is an array to hold our JSON data
     // isFetched indicates if the API call has finished
     // errorMsg is either null (none) or there is some error
+    //isBeginner/isIntermediate property begins set to false
     this.state = {
       apiData: [],
-      apiDataBeginner: [], //declaring state for Beginner section of array
-      apiDataIntermediate: [], //declaring state for Intermediate section of array
+      apiDataBeginner: [],
+      apiDataIntermediate: [],
       isFetched: false,
-      errorMsg: null
+      errorMsg: null,
+      isBeginner: false,
+      isIntermediate: false
     };
   }
+  //****************function called on button click, isBeginnerisIntermediate = true*********************//
+  //****************this function can be copied for each button********************//
+  toggleBeginner = () => {
+    this.setState((state) => ({ isBeginner: !state.isBeginner }));
+  };
+
+  toggleIntermediate = () => {
+    this.setState((state) => ({ isIntermediate: !state.isIntermediate }));
+  };
+  //****************function called on button click, isBeginner/isIntermediate = true*********************//
+
+  //****************API calls starts here********************//
   // componentDidMount() is invoked immediately after a
   // component is mounted (inserted into the tree)
-
   async componentDidMount() {
     try {
       const API_URL =
@@ -30,8 +44,9 @@ class App extends Component {
       const jsonResult = await response.json();
 
       // update the state variables correctly.
+      //access different parts of the json array by initializing this.setState and creating key:value pairs.
       this.setState({ apiDataBeginner: jsonResult.Beginner });
-      this.setState({ apiDataIntermediate: jsonResult.Intermediate }); //This may need to change
+      this.setState({ apiDataIntermediate: jsonResult.Intermediate });
       this.setState({ isFetched: true });
     } catch (error) {
       // In the case of an error ...
@@ -41,7 +56,6 @@ class App extends Component {
     } // end of try catch
   } // end of componentDidMount()
 
-  // Remember our three state variables.
   // PAY ATTENTION to the JSON returned. We need to be able to
   // access specific properties from the JSON returned.
   // Notice that this time we have three possible returns for our
@@ -61,40 +75,108 @@ class App extends Component {
       ); // end of return
     } else {
       // we have no errors and we have data
+      //****************API calls end here********************//
+
+      //****************App return starts here********************//
       return (
         <div className="App">
-          <div className="PeopleTable">
-            <h1>CS385 - API Fetch Call</h1>
-            <table border="1">
-              <thead>
-                <tr>
-                  <th>Body Part</th>
-                  <th>Stretch</th>
-                  <th>Image Link</th>
-                  <th>Stretch Description</th>
-                  <th>Audio File</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.apiDataBeginner.map((person, index) => (
-                  <tr key={index}>
-                    <td>{person.body_part}</td>
-                    <td>{person.Position}</td>
-                    <td>
-                      <img alt="dog" src={person.imgURL} />
-                    </td>
-                    <td>{person.Description}</td>
-                    <td><audio controls >
-                    <source src={person.Audio}/>
-                    </audio></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {/*start of drop down button menu*/}
+          <button
+            className="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenu2"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Please select your level
+          </button>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button
+              onClick={this.toggleBeginner}
+              className="dropdown-item"
+              type="button"
+            >
+              Beginner
+            </button>
+            <button
+              onClick={this.toggleIntermediate}
+              className="dropdown-item"
+              type="button"
+            >
+              Intermediate
+            </button>
           </div>
+          {/*end of drop down button menu*/}
+
+          {/*card container starts with map function*/}
+          {/*Start of beginner map function triggered by a drop down button click. The button is a toggle button with two states, true and false.
+        The function is a ternary operator, if is beginner is true the card and its contents is rendered, otherwise null.
+        First click renders card content to the screen. Second click hides card*/}
+          {this.state.isBeginner ? (
+            <div className="card-group">
+              {this.state.apiDataBeginner.map((person, index) => (
+                <div className="card text-center">
+                  <div class="card">
+                    <div className="card-body">
+                      <img
+                        className="card-img-top"
+                        alt="yogapic"
+                        src={person.imgURL}
+                        key={index}
+                      />
+
+                      <h3 className="card-title">{person.body_part}</h3>
+                      <h5 className="car-title">{person.Position}</h5>
+                      <p className="card-text">{person.Description}</p>
+
+                      <audio controls autoplay>
+                        <source src={person.Audio} />
+                      </audio>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : null}
+          {/*End of level beginner map function triggered by a drop down button click*/}
+          {/*container ends*/}
+
+          {/*card container starts with map function*/}
+          {/*Start of intermediate map function triggered by a drop down button click. The button is a toggle button with two states, true and false. 
+        First click renders card content to the screen. Second click hides card*/}
+          {this.state.isIntermediate ? (
+            <div className="card-group">
+              {this.state.apiDataIntermediate.map((person, index) => (
+                <div className="card text-center">
+                  <div class="card">
+                    <div className="card-body">
+                      <img
+                        className="card-img-top"
+                        alt="yogapic"
+                        src={person.imgURL}
+                        key={index}
+                      />
+
+                      <h3 className="card-title">{person.body_part}</h3>
+                      <h5 className="car-title">{person.Position}</h5>
+                      <p className="card-text">{person.Description}</p>
+
+                      <audio controls autoplay>
+                        <source src={person.Audio} />
+                      </audio>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : null}
+          {/*End of intermediate map function triggered by a drop down button click*/}
+          {/*container ends*/}
         </div>
       ); // end of return
     } // end of the else statement.
   } // end of render()
 } // end of App class
+
 export default App;
