@@ -85,7 +85,14 @@ class App extends Component {
       return (
         <div className="App">
           {/*start of drop down button menu*/}
-          <button
+          <h1 class="display-1">Quick Stretch</h1>
+
+          <p class="lead">
+             Take a moment and find the stretch that suits you
+          </p>
+          
+        <button
+            class="shadow p-3 mb-5 bg-white rounded"
             className="btn btn-secondary dropdown-toggle"
             type="button"
             id="dropdownMenu2"
@@ -131,7 +138,12 @@ class App extends Component {
             />
           ) : null}
           {/*End of intermediate map ternary statement triggered by a drop down button click*/}
+       <div>
+          <br></br>
+          <p><small>This app was created by Team Silver.</small></p>
+         <p><small> Greta, Anna, John and Cathal </small></p>
         </div>
+    </div>
       ); // end of return
     } // end of the else statement.
   } // end of render()
@@ -146,10 +158,12 @@ class Beginner extends Component {
     return (
       <div className="card-group">
         {mapBeginner.map((person, index) => (
-          <div className="card text-center">
+         <div class="shadow p-3 mb-5 bg-white rounded">
+      <div className="card text-center">
             <div class="card">
               <div className="card-body">
                 <img
+                  class="img-thumbnail"
                   className="card-img-top"
                   alt="yogapic"
                   src={person.imgURL}
