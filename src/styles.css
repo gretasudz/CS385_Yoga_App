@@ -1,4 +1,7 @@
 .App {
-  font-family: sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
   text-align: center;
+  background-color: orange;
+  color: grey;
+  padding: 60px;
 }
