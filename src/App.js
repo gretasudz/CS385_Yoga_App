@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Intermediate from "./components/Intermediate";
+import "./styles.css";
 
 class App extends Component {
   constructor(props) {
@@ -49,8 +50,8 @@ class App extends Component {
 
       // update the state variables correctly.
       //access different parts of the json array by initializing this.setState and creating key:value pairs.
-      this.setState({ apiDataBeginner: jsonResult.Beginner });
-      this.setState({ apiDataIntermediate: jsonResult.Intermediate });
+      this.setState({ apiDataBeginner: jsonResult.beginner });
+      this.setState({ apiDataIntermediate: jsonResult.intermediate });
       this.setState({ isFetched: true });
     } catch (error) {
       // In the case of an error ...
@@ -87,11 +88,9 @@ class App extends Component {
           {/*start of drop down button menu*/}
           <h1 class="display-1">Quick Stretch</h1>
 
-          <p class="lead">
-             Take a moment and find the stretch that suits you
-          </p>
-          
-        <button
+          <p class="lead">Take a moment and find the stretch that suits you</p>
+
+          <button
             class="shadow p-3 mb-5 bg-white rounded"
             className="btn btn-secondary dropdown-toggle"
             type="button"
@@ -138,12 +137,16 @@ class App extends Component {
             />
           ) : null}
           {/*End of intermediate map ternary statement triggered by a drop down button click*/}
-       <div>
-          <br></br>
-          <p><small>This app was created by Team Silver.</small></p>
-         <p><small> Greta, Anna, John and Cathal </small></p>
+          <div>
+            <br></br>
+            <p>
+              <small>This app was created by Team Silver.</small>
+            </p>
+            <p>
+              <small> Greta, Anna, John and Cathal </small>
+            </p>
+          </div>
         </div>
-    </div>
       ); // end of return
     } // end of the else statement.
   } // end of render()
@@ -155,15 +158,14 @@ class Beginner extends Component {
     //this const declaration connects this Beginner class to the App class. It is the way to pass the//
     //apiDataBeginner state to call the map function on it from within this component//
     const mapBeginner = this.props.mapObjectBeginner;
+
     return (
       <div className="card-group">
         {mapBeginner.map((person, index) => (
-         <div class="shadow p-3 mb-5 bg-white rounded">
-      <div className="card text-center">
+          <div className="card text-center">
             <div class="card">
               <div className="card-body">
                 <img
-                  class="img-thumbnail"
                   className="card-img-top"
                   alt="yogapic"
                   src={person.imgURL}
@@ -171,11 +173,11 @@ class Beginner extends Component {
                 />
 
                 <h3 className="card-title">{person.body_part}</h3>
-                <h5 className="car-title">{person.Position}</h5>
-                <p className="card-text">{person.Description}</p>
+                <h5 className="car-title">{person.position}</h5>
+                <p className="card-text">{person.description}</p>
 
                 <audio controls autoplay>
-                  <source src={person.Audio} />
+                  <source src={person.audio} />
                 </audio>
               </div>
             </div>
