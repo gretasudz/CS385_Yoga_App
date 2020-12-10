@@ -104,7 +104,7 @@ class App extends Component {
             aria-expanded="false"
           >
             Please select your level &nbsp;{" "}
-            <img class="arrow" src={arrow} alt="this is the logo" />
+            <img class="arrow" src={arrow} alt="dropdown arrow" />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
             <button
