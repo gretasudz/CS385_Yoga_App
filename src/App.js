@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Intermediate from "./components/Intermediate";
 import "./styles.css";
 import Logo from "./self_improvement-white-18dp.svg";
+import arrow from "./arrow_drop_down-24px (1).svg";
 
 class App extends Component {
   constructor(props) {
@@ -102,7 +103,8 @@ class App extends Component {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Please select your level
+            Please select your level &nbsp;{" "}
+            <img class="arrow" src={arrow} alt="this is the logo" />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
             <button
