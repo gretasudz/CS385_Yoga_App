@@ -51,3 +51,7 @@
 .footer {
   color: white;
 }
+
+audio {
+  width: 100%;
+}
