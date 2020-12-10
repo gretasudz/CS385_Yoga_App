@@ -2,7 +2,7 @@
   font-style: normal;
   text-align: center;
   background-color: #609cd3;
-  padding: 60px;
+  padding: 10px;
 }
 
 .logo {
@@ -44,7 +44,6 @@
 }
 .card {
   border: none;
-  padding: 10px;
 }
 .footer {
   color: white;
