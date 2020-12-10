@@ -1,21 +1,22 @@
 .App {
-  font-style: normal;
   text-align: center;
   background-color: #609cd3;
   padding: 10px;
 }
-
+/*styling of the logo*/
 .logo {
   height: 150px;
   width: 100%;
 }
 
+/*styling of the title Quick Stretch*/
 .display-1 {
   color: #ffffff;
   font-family: roboto;
   font-size: 60px;
 }
 
+/*styling of the button for the drop down menu*/
 .dropdownbtn {
   width: 260px;
   height: 60px;
@@ -27,17 +28,21 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
 }
+
+/*styling of the arrow in the dropdown button*/
 .arrow {
   width: 30px;
   height: 30px;
 }
 
+/*styling of the dropdown element once the button is clicked*/
 .dropdown-menu {
   width: 260px;
   border-radius: 20px;
   text-align: center;
 }
 
+/*styling of the yoga cards*/
 .card-body {
   background-color: white;
   border: none;
@@ -45,10 +50,13 @@
 .card {
   border: none;
 }
+
+/*styling of the footer*/
 .footer {
   color: white;
 }
 
+/*styling of the audio controls*/
 audio {
   width: 100%;
 }
